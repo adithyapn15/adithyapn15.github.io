@@ -25,30 +25,7 @@
     .sep{ height:1px; background:var(--border); margin:4px 0 18px }
 
     h1{ font-size:36px; margin:6px 0 2px }
-    .lead{ color:var(--muted); margin:0 0 14px }
-
-    .callout{
-      background:var(--card);
-      border:1px solid var(--border);
-      border-radius:14px;
-      padding:14px 14px;
-      box-shadow: var(--shadow);
-      margin: 0 0 18px;
-    }
-    .callout h2{
-      font-size:18px;
-      margin:0 0 8px;
-    }
-    .callout p{ margin:0 0 10px; color:var(--muted) }
-    .pillrow{ display:flex; flex-wrap:wrap; gap:10px }
-    .pill{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:8px 12px;
-      border-radius:999px;
-      background:var(--chip);
-      border:1px solid var(--border);
-      font-size:13px;
-    }
+    .lead{ color:var(--muted); margin:0 0 18px }
 
     /* Masonry layout */
     .masonry{ column-count:3; column-gap:16px; }
@@ -75,13 +52,26 @@
     .content{ padding:14px 14px 12px }
     .title{ font-size:22px; font-weight:800; line-height:1.15; margin:4px 0 6px; }
     .subtitle{ color:var(--muted); font-size:14px; margin:2px 0 10px }
-    .chips{ display:flex; flex-wrap:wrap; gap:8px; margin-top:8px }
+
+    .chips{ display:flex; flex-wrap:wrap; gap:8px; margin-top:10px }
     .chip{
       display:inline-flex; align-items:center; gap:6px;
       padding:6px 10px; border-radius:999px;
       background:var(--chip); border:1px solid var(--border); font-size:12px;
+      color:var(--fg);
     }
     .chip svg{ width:14px; height:14px; opacity:.9 }
+
+    .note{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:14px;
+      box-shadow: var(--shadow);
+      margin: 0 0 18px;
+      color:var(--muted);
+    }
+    .note b{ color:var(--fg); }
   </style>
 </head>
 <body>
@@ -100,22 +90,13 @@
 
     <h1>Projects</h1>
     <p class="lead">
-      A growing collection of things I tinker with. I keep short PDF notes for many of these topics.
+      Working notes and ongoing projects. Each card links to a short PDF writeup. Images are representative figures from the same work.
       Please feel free to contact me regarding collaborations 🔬😀.
     </p>
 
-    <div class="callout">
-      <h2>Notes (PDF)</h2>
-      <p>
-        These are lightweight, equation-first notes that I use as working references.
-      </p>
-      <div class="pillrow">
-        <a class="pill" href="assets/group-theory-homotopy.pdf" target="_blank" rel="noopener">Group theory and homotopy</a>
-        <a class="pill" href="assets/liquid-crystal-defects.pdf" target="_blank" rel="noopener">Liquid crystal defects</a>
-        <a class="pill" href="assets/fdtd-light-simulation.pdf" target="_blank" rel="noopener">Minimal FDTD light simulation</a>
-        <a class="pill" href="assets/main.pdf" target="_blank" rel="noopener">QFT foundations</a>
-        <a class="pill" href="assets/photonic-integrated-circuits.pdf" target="_blank" rel="noopener">Photonic Integrated Circuits</a>
-      </div>
+    <div class="note">
+      <b>How to update:</b> Replace images in <span style="color:var(--fg)">assets/projects/img/</span> and PDFs in
+      <span style="color:var(--fg)">assets/projects/pdfs/</span>. If an image is missing, the card shows a placeholder.
     </div>
 
     <div id="grid" class="masonry"></div>
@@ -125,69 +106,71 @@
     /* ----------------- EDIT YOUR PROJECTS HERE ----------------- */
     const projects = [
       {
-        title: "musical-box lab",
-        subtitle: "MCU C firmware · PWM audio · photodiode control · op-amp chain",
-        img: "/assets/projects/musicalbox.jpg",
-        links: { git:"", demo:"", paper:"" }
+        title: "Group theory and homotopy for topological strctures",
+        subtitle: "Order parameters, defects, homotopy groups, and classification ideas for soft-matter topology.",
+        img: "assets/projects/img/group-theory.jpg",
+        pdf: "assets/projects/pdfs/group-theory-homotopy.pdf"
       },
       {
-        title: "speckle and sub-Rayleigh imaging toolkit",
-        subtitle: "Coherence engineering + speckle processing utilities for lab demos",
-        img: "/assets/projects/speckle.png",
-        links: { git:"", demo:"", paper:"" }
+        title: "Liquid crystal defects and director field structures",
+        subtitle: "Defects, elastic energetics, and field-driven phenomenology in nematic and chiral nematic systems.",
+        img: "assets/projects/img/lc-defects.jpg",
+        pdf: "assets/projects/pdfs/liquid-crystal-defects.pdf"
       },
       {
-        title: "lattice Boltzmann demos",
-        subtitle: "Soft-matter flows: Q-tensor and LdG visualization; interactive notebooks",
-        img: "/assets/projects/lbm.png",
-        links: { git:"", demo:"", paper:"" }
+        title: "FDTD light simulation ",
+        subtitle: "Minimal FDTD setup and practical implementation notes for wave propagation and boundary conditions.",
+        img: "assets/projects/img/fdtd.jpg",
+        pdf: "assets/projects/pdfs/fdtd-light-simulation.pdf"
       },
       {
-        title: "toron racetrack prototypes",
-        subtitle: "Electrically steered topological textures in reconfigurable LC devices",
-        img: "/assets/projects/toron.png",
-        links: { git:"", demo:"", paper:"" }
+        title: "Quantum Field Theory foundations",
+        subtitle: "Compact notes used as a working reference for field theory concepts relevant to texture dynamics.",
+        img: "assets/projects/img/qft.jpg",
+        pdf: "assets/projects/pdfs/main.pdf"
       },
-      {
-        title: "DHM speckle phase tools",
-        subtitle: "Quick scripts for phase retrieval and analysis in digital holography",
-        img: "/assets/projects/dhm.png",
-        links: { git:"", demo:"", paper:"" }
+       {
+        title: "Optical Neural Network and Photnic Integrated Circuits",
+        subtitle: "Compact notes used as a working reference for field theory concepts relevant to texture dynamics.",
+        img: "assets/projects/img/.jpg",
+        pdf: "assets/projects/pdfs/photonic-integrated-circuits.pdf"
       },
+      /* Keep placeholders for future projects if you want */
+      /*
       {
-        title: "optics lab helper",
-        subtitle: "Small utilities for oscilloscope and waveform-generator logging plus calibration notes",
-        img: "/assets/projects/labtools.jpg",
-        links: { git:"", demo:"", paper:"" }
+        title: "Toron racetrack control",
+        subtitle: "Waveform-driven defect transport and racetrack style device logic.",
+        img: "assets/projects/img/toron.jpg",
+        pdf: "assets/projects/pdfs/toron-racetrack.pdf"
       }
+      */
     ];
     /* ----------------------------------------------------------- */
 
-    const iconGit = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.11.79-.26.79-.58v-2.2c-3.22.7-3.9-1.55-3.9-1.55-.53-1.35-1.3-1.71-1.3-1.71-1.06-.73.08-.72.08-.72 1.17.08 1.78 1.2 1.78 1.2 1.04 1.77 2.73 1.26 3.4.97.11-.76.41-1.26.75-1.55-2.57-.29-5.27-1.29-5.27-5.74 0-1.27.46-2.31 1.2-3.13-.12-.29-.52-1.47.11-3.06 0 0 .98-.31 3.2 1.19a11.07 11.07 0 0 1 5.82 0c2.22-1.5 3.2-1.19 3.2-1.19.63 1.59.23 2.77.11 3.06.74.82 1.2 1.86 1.2 3.13 0 4.46-2.71 5.44-5.29 5.73.42.36.8 1.06.8 2.14v3.17c0 .32.21.7.8.58A11.5 11.5 0 0 0 12 .5Z"/></svg>`;
-    const iconLink = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M10.59 13.41a1 1 0 0 0 1.41 0l3.3-3.3a3 3 0 1 0-4.24-4.24l-1.8 1.8a1 1 0 1 0 1.42 1.42l1.8-1.8a1 1 0 1 1 1.41 1.41l-3.3 3.3a1 1 0 0 0 0 1.41ZM6.94 20.94a3 3 0 0 1 0-4.24l3.3-3.3a1 1 0 1 1 1.41 1.42l-3.3 3.3a1 1 0 0 0 1.41 1.41l1.8-1.8a1 1 0 1 1 1.42 1.42l-1.8 1.8a3 3 0 0 1-4.24 0Z"/></svg>`;
-    const iconDoc  = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 2h7l5 5v13a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Zm7 1.5V8h4.5L14 3.5ZM8 12.5h8v1.5H8v-1.5Zm0 3h8V17H8v-1.5Zm0-6h5V11H8V9.5Z"/></svg>`;
+    const iconPdf = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 2h7l5 5v13a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Zm7 1.5V8h4.5L14 3.5ZM8 12.5h8v1.5H8v-1.5Zm0 3h8V17H8v-1.5Zm0-6h5V11H8V9.5Z"/></svg>`;
 
-    function chip(label, url, icon){
-      return url ? `<a class="chip" href="${url}" target="_blank" rel="noopener">${icon} ${label}</a>` : "";
+    function safeLink(url){
+      return (typeof url === "string" && url.length > 0) ? url : "";
     }
-    function card(p){
-      const chips = [
-        chip("GitHub", p.links.git, iconGit),
-        chip("Demo",   p.links.demo, iconLink),
-        chip("Paper",  p.links.paper, iconDoc)
-      ].join("");
 
-      const img = p.img
+    function card(p){
+      const img = safeLink(p.img)
         ? `<img class="cover" src="${p.img}" alt="">`
-        : `<div class="cover" style="display:flex;align-items:center;justify-content:center;color:#777">no image</div>`;
+        : `<div class="cover" style="display:flex;align-items:center;justify-content:center;color:#777">no image yet</div>`;
+
+      const pdf = safeLink(p.pdf)
+        ? `<a class="chip" href="${p.pdf}" target="_blank" rel="noopener">${iconPdf} PDF notes</a>`
+        : `<span class="chip" style="opacity:.6">${iconPdf} PDF coming soon</span>`;
 
       return `
         <article class="card">
           ${img}
           <div class="content">
             <div class="title">${p.title}</div>
-            <div class="subtitle">${p.subtitle||""}</div>
-            <div class="chips">${chips}</div>
+            <div class="subtitle">${p.subtitle || ""}</div>
+            <div class="chips">
+              ${pdf}
+            </div>
           </div>
         </article>
       `;
@@ -196,10 +179,14 @@
     document.getElementById("grid").innerHTML = projects.map(card).join("");
 
     /* dark mode (default dark) */
-    const root=document.documentElement, btn=document.getElementById('mode');
-    const saved=localStorage.getItem('mode')||'dark';
-    if(saved==='dark') root.classList.add('dark'); else root.classList.remove('dark');
-    btn.onclick=()=>{const d=root.classList.toggle('dark');localStorage.setItem('mode',d?'dark':'light');};
+    const root = document.documentElement;
+    const btn  = document.getElementById('mode');
+    const saved = localStorage.getItem('mode') || 'dark';
+    if (saved === 'dark') root.classList.add('dark'); else root.classList.remove('dark');
+    btn.onclick = () => {
+      const d = root.classList.toggle('dark');
+      localStorage.setItem('mode', d ? 'dark' : 'light');
+    };
   </script>
 </body>
 </html>
