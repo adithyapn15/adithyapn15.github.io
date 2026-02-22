@@ -4,266 +4,259 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Adithya Pradeep</title>
-
 <style>
-/* ---------- theme ---------- */
-:root{
-  --bg:#ffffff; --fg:#141414; --muted:#6b6b6b; --link:#a200ff;
-  --card:#f6f6f6; --border:#eaeaea; --max:980px; --colR:300px;
-  --accent:#3b82f6;
-}
-:root.dark{
-  --bg:#0f0f12; --fg:#eaeaea; --muted:#a0a0a0; --link:#caa6ff;
-  --card:#17171f; --border:#2a2a35;
-  --accent:#60a5fa;
-}
+  /* ---- theme variables (light + dark) ---- */
+  :root{
+    --bg:#ffffff; --fg:#141414; --muted:#6b6b6b; --link:#a200ff;
+    --card:#f6f6f6; --border:#eaeaea; --max:980px; --colR:300px;
+    --accent:#3b82f6; /* blue */
+  }
+  :root.dark{
+    --bg:#0f0f12; --fg:#eaeaea; --muted:#a0a0a0; --link:#caa6ff;
+    --card:#17171f; --border:#2a2a35;
+    --accent:#60a5fa; /* blue in dark mode */
+  }
 
-*{box-sizing:border-box}
-body{
-  margin:0;
-  background:var(--bg);
-  color:var(--fg);
-  font:16px/1.65 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif
-}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--fg);
+       font:16px/1.65 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+  a{color:var(--link);text-decoration:none}
+  .container{max-width:var(--max);margin:0 auto;padding:24px}
 
-a{color:var(--link);text-decoration:none}
-.container{max-width:var(--max);margin:0 auto;padding:24px}
+  /* top nav */
+  .top{display:flex;gap:18px;justify-content:center;align-items:center;margin:6px 0 8px;flex-wrap:wrap}
+  .top a{font-size:15px}
+  .toggle{border:1px solid var(--border);border-radius:999px;padding:3px 10px;cursor:pointer;font-size:14px;color:var(--muted)}
+  .sep{height:1px;background:var(--border);margin:4px 0 18px}
 
-/* ---------- nav ---------- */
-.top{
-  display:flex;
-  gap:18px;
-  justify-content:center;
-  align-items:center;
-  margin:6px 0 8px;
-  flex-wrap:wrap
-}
-.toggle{
-  border:1px solid var(--border);
-  border-radius:999px;
-  padding:3px 10px;
-  cursor:pointer;
-  color:var(--muted)
-}
-.sep{height:1px;background:var(--border);margin:4px 0 18px}
+  /* layout */
+  .grid{display:grid;grid-template-columns:1fr var(--colR);gap:28px}
+  .sidebar .card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px}
+  .avatar{width:100%;border-radius:10px;display:block;margin-bottom:10px;object-fit:cover;aspect-ratio:1/1}
+  h1{font-size:36px;line-height:1.2;margin:0 0 6px}
+  h1 b{font-weight:800}
+  h2{font-size:22px;margin:26px 0 10px}
+  .note{font-style:italic;color:var(--muted);margin:6px 0 14px}
+  .motto{color:var(--muted);margin:2px 0 10px}
+  .small{font-size:14px;color:var(--muted)}
+  footer{margin:36px 0 10px;text-align:center;color:var(--muted);font-size:14px}
 
-/* ---------- layout ---------- */
-.grid{display:grid;grid-template-columns:1fr var(--colR);gap:28px}
-.sidebar .card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:10px;
-  padding:12px
-}
+  /* Updates timeline */
+  .timeline{display:grid;grid-template-columns:70px 1fr;gap:14px;align-items:start}
 
-h1{font-size:36px;margin:0 0 6px}
-h2{font-size:22px;margin:26px 0 10px}
-.motto{color:var(--muted)}
-.note{font-style:italic;color:var(--muted)}
-.small{font-size:14px;color:var(--muted)}
+  /* Experience list (like screenshot) */
+  .vlist{
+    border-left:2px solid var(--accent);
+    padding-left:14px;
+    margin-top:10px;
+  }
+  .vitem{
+    position:relative;
+    padding:8px 0 8px 0;
+  }
+  .vitem::before{
+    content:"";
+    position:absolute;
+    left:-22px;
+    top:16px;
+    width:9px;
+    height:9px;
+    border-radius:999px;
+    background:var(--accent);
+  }
+  .vtitle{
+    font-weight:700;
+  }
+  .vmeta{
+    color:var(--muted);
+    font-size:14px;
+    margin-left:6px;
+    white-space:nowrap;
+  }
+  .vdesc{
+    color:var(--muted);
+    font-size:14px;
+    margin-top:2px;
+  }
 
-footer{
-  margin:36px 0 10px;
-  text-align:center;
-  color:var(--muted);
-}
-
-/* ---------- EXPERIENCE TIMELINE ---------- */
-.vlist{border-left:2px solid var(--accent);padding-left:14px}
-.vitem{position:relative;padding:10px 0}
-.vitem::before{
-  content:"";
-  position:absolute;
-  left:-22px;
-  top:16px;
-  width:9px;height:9px;
-  border-radius:999px;
-  background:var(--accent);
-}
-.vtitle{font-weight:700}
-.vmeta{color:var(--muted);font-size:14px;margin-left:6px}
-.vdesc{color:var(--muted);font-size:14px}
-
-/* ---------- NEWS STYLE UPDATES ---------- */
-.news{
-  display:flex;
-  flex-direction:column;
-  gap:14px;
-}
-
-.news-item{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:12px;
-  padding:14px 16px;
-  position:relative;
-}
-
-/* subtle research-style accent bar */
-.news-item::before{
-  content:"";
-  position:absolute;
-  left:0;
-  top:0;
-  bottom:0;
-  width:3px;
-  background:var(--link);
-  border-radius:12px 0 0 12px;
-}
-
-.news-date{
-  font-size:13px;
-  color:var(--muted);
-  margin-bottom:6px;
-}
-
-.avatar{
-  width:100%;
-  border-radius:10px;
-  object-fit:cover;
-}
-
-/* ---------- responsive ---------- */
-@media (max-width:860px){
-  .grid{grid-template-columns:1fr}
-}
+  @media (max-width:860px){
+    .grid{grid-template-columns:1fr}
+    .top{justify-content:flex-start}
+  }
 </style>
 </head>
-
 <body>
 <div class="container">
+  <div class="top">
+    <a href="index.html">Home</a>
+    <a href="#experience">Experience</a>
+    <a href="publications.html">Publications</a>
+    <a href="projects.html">Projects</a>
+    <button class="toggle" id="mode">☾/☀</button>
+  </div>
 
-<div class="top">
-  <a href="index.html">Home</a>
-  <a href="#experience">Experience</a>
-  <a href="publications.html">Publications</a>
-  <a href="projects.html">Projects</a>
-  <button class="toggle" id="mode">☾/☀</button>
-</div>
+  <div class="sep"></div>
 
-<div class="sep"></div>
+  <div class="grid">
+    <!-- main column -->
+    <main>
+      <section id="about">
+        <h1><b>Adithya Pradeep</b></h1>
+        <p class="motto">Motto – Research on cool stuff.</p>
+        <p class="note">This webpage is under active construction.</p>
 
-<div class="grid">
+        <p>
+          My research uses <b>topology</b> and <b>symmetry</b> to understand and engineer complex optical and soft-matter systems.
+          I study <b>topological defects</b> in liquid crystals through <b>group-theoretic</b> and <b>quantum field theoretic</b> viewpoints,
+          building effective descriptions of textures, defect-mediated transitions, and field-driven dynamics.
+          Alongside this, I work on <b>photonic integrated circuits</b> for scalable optical functionality,
+          from <b>sub-Rayleigh imaging</b> via coherence and speckle control to programmable architectures for <b>optical neural networks</b>.
+          The aim is to connect mathematical structure to device-level performance through modelling, fabrication, and measurement 🔬😀.
+        </p>
 
-<!-- ================= MAIN ================= -->
-<main>
+        <p>
+          <b>Currently:</b> University of Oxford (Soft Matter Photonics Group); projects on topology, defects, photonic integrated circuits,
+          holographic microscopy, smart windows, and blue-phase devices.<br>
+          <b>Previously:</b> Columbia University (Applied Physics and Applied Mathematics); projects on thin-film transistors,
+          laser-annealed phase transitions, and racetrack memory concepts. Earlier work includes structural materials, metallic glasses, and corrosion.
+        </p>
+      </section>
 
-<section>
-<h1><b>Adithya Pradeep</b></h1>
-<p class="motto">Motto – Research on cool stuff.</p>
-<p class="note">This webpage is under active construction.</p>
+      <section id="experience">
+        <h2>Experience</h2>
 
-<p>
-My research uses <b>topology</b>, <b>group theory</b>, and <b>quantum field theory</b>
-to understand and engineer complex optical and soft-matter systems.
-I study <b>topological defects</b> in liquid crystals and develop
-photonic integrated circuits enabling <b>sub-Rayleigh imaging</b> and
-programmable <b>optical neural networks</b>.
-The aim is to connect mathematical structure with experimental photonic devices 🔬😀.
-</p>
+        <div class="vlist">
+          <div class="vitem">
+            <div>
+              <span class="vtitle">Teaching Assistant - University of Oxford</span>
+              <span class="vmeta">Nov 2022 to present</span>
+            </div>
+            <div class="vdesc">
+              Led first-year lab on microcontroller systems, embedded C, instrumentation, and debugging workflows.
+            </div>
+          </div>
 
-</section>
+          <div class="vitem">
+            <div>
+              <span class="vtitle">Teaching Assistant - Columbia University</span>
+              <span class="vmeta">Jan 2022 to May 2022</span>
+            </div>
+            <div class="vdesc">
+              Recitations and problem sessions on mechanics of materials, tensors, elastic waves, plasticity, and fracture and fatigue.
+            </div>
+          </div>
 
-<!-- EXPERIENCE -->
-<section id="experience">
-<h2>Experience</h2>
+          <div class="vitem">
+            <div>
+              <span class="vtitle">Science Undergraduate Laboratory Intern - Princeton</span>
+              <span class="vmeta">Jun 2020 to Jul 2020</span>
+            </div>
+            <div class="vdesc">
+              Worked on plasma and tokamak related modelling tasks and analysis, including vertical displacement events and neutral beam concepts.
+            </div>
+          </div>
 
-<div class="vlist">
+          <div class="vitem">
+            <div>
+              <span class="vtitle">Research Intern - Seoul National University</span>
+              <span class="vmeta">Aug 2019 to Jan 2020</span>
+            </div>
+            <div class="vdesc">
+              Research on metallic glasses and high entropy alloys, composite design, and applied ML for composition discovery.
+            </div>
+          </div>
 
-<div class="vitem">
-<span class="vtitle">Teaching Assistant – University of Oxford</span>
-<span class="vmeta">Nov 2022–Present</span>
-<div class="vdesc">Microcontroller systems, embedded C, instrumentation labs.</div>
-</div>
+          <div class="vitem">
+            <div>
+              <span class="vtitle">Student Intern - BITS Pilani</span>
+              <span class="vmeta">Aug 2016 to Jun 2020</span>
+            </div>
+            <div class="vdesc">
+              Research projects spanning corrosion, thermodynamic modelling of glasses, and engineering design projects.
+            </div>
+          </div>
 
-<div class="vitem">
-<span class="vtitle">Teaching Assistant – Columbia University</span>
-<span class="vmeta">Jan–May 2022</span>
-<div class="vdesc">Mechanics of materials, tensors, elastic waves and fracture.</div>
-</div>
+          <div class="vitem">
+            <div>
+              <span class="vtitle">Intern - NPCC Engineering Pvt. Limited</span>
+              <span class="vmeta">Jun 2017 to Aug 2017</span>
+            </div>
+            <div class="vdesc">
+              Mechanical static design exposure for pressure vessels, design codes, and ASME Section VIII workflows.
+            </div>
+          </div>
+        </div>
+      </section>
 
-<div class="vitem">
-<span class="vtitle">Research Intern – Princeton</span>
-<span class="vmeta">Jun–Jul 2020</span>
-<div class="vdesc">Tokamak modelling and plasma analysis.</div>
-</div>
+      <section id="updates">
+        <h2>Updates</h2>
+        <div class="timeline">
+          <div class="small">2025</div>
+          <div>
+            New paper out in <i>Small Methods</i>:
+            <a href="https://onlinelibrary.wiley.com/doi/10.1002/smtd.202501892" target="_blank" rel="noopener">
+              From Millimeters to Microns: A Hybrid Strategy for Reconfigurable Liquid-Crystal Patterning
+            </a>.
+          </div>
 
-<div class="vitem">
-<span class="vtitle">Research Intern – Seoul National University</span>
-<span class="vmeta">2019–2020</span>
-<div class="vdesc">Metallic glasses and ML-assisted materials discovery.</div>
-</div>
+          <div class="small">2026</div>
+          <div>
+            Paper released in <i>Optica Continuum</i>:
+            <a href="https://opg.optica.org/optcon/fulltext.cfm?uri=optcon-5-2-518" target="_blank" rel="noopener">
+              Gap-controlled photonic coupling in femtosecond laser-written waveguide interconnections
+            </a>.
+          </div>
 
-</div>
-</section>
+          <div class="small">Oct<br>2025</div>
+          <div>
+            Best Paper Award for <i>Termination Control Between Collinear Segments in 3D Laser-written Photonic Circuits</i>,
+            Optica Laser Congress 2025, Prague, Czech Republic, 19 to 23 October 2025.
+          </div>
+        </div>
+      </section>
+    </main>
 
-<!-- NEWS -->
-<section>
-<h2>Updates</h2>
+    <!-- right sidebar -->
+    <aside class="sidebar">
+      <div class="card">
+        <img
+          class="avatar"
+          src="assets/WhatsApp%20Image%202025-10-05%20at%2016.56.34.jpeg"
+          alt="Adithya portrait"
+          style="
+            width:100%;
+            aspect-ratio: 4 / 5;
+            object-fit: cover;
+            object-position: 50% 78%;
+            border-radius:10px;
+          "
+        >
+        <div class="small">
+          Oxford • London<br>
+          <a href="mailto:adithyapn15@gmail.com">adithyapn15@gmail.com</a><br>
+          <a href="https://scholar.google.com/citations?user=7aQmxwcAAAAJ&hl=en">Google Scholar</a><br>
+          <a href="https://www.linkedin.com/in/adithya-nair15">LinkedIn</a><br>
+          <span>CV available on request</span>
+        </div>
+      </div>
+    </aside>
 
-<div class="news">
-
-<div class="news-item">
-<div class="news-date">2025</div>
-New paper in <i>Small Methods</i>:
-<a href="https://onlinelibrary.wiley.com/doi/10.1002/smtd.202501892" target="_blank">
-From Millimeters to Microns: A Hybrid Strategy for Reconfigurable Liquid-Crystal Patterning
-</a>.
-</div>
-
-<div class="news-item">
-<div class="news-date">2026</div>
-Paper released in <i>Optica Continuum</i>:
-<a href="https://opg.optica.org/optcon/fulltext.cfm?uri=optcon-5-2-518" target="_blank">
-Gap-controlled photonic coupling in femtosecond laser-written waveguide interconnections
-</a>.
-</div>
-
-<div class="news-item">
-<div class="news-date">Oct 2025</div>
-Best Paper Award — <i>Termination Control Between Collinear Segments in 3D Laser-written Photonic Circuits</i>,
-Optica Laser Congress 2025, Prague.
-</div>
-
-</div>
-</section>
-
-</main>
-
-<!-- ================= SIDEBAR ================= -->
-<aside class="sidebar">
-<div class="card">
-
-<img class="avatar"
-src="assets/WhatsApp%20Image%202025-10-05%20at%2016.56.34.jpeg">
-
-<div class="small">
-Oxford • London<br>
-<a href="mailto:adithyapn15@gmail.com">adithyapn15@gmail.com</a><br>
-<a href="https://scholar.google.com">Google Scholar</a><br>
-<a href="https://www.linkedin.com/in/adithya-nair15">LinkedIn</a><br>
-</div>
-
-</div>
-</aside>
-
-</div>
-
-<footer>© 2025 Adithya Pradeep</footer>
-
+    <footer>© 2025 Adithya Pradeep</footer>
+  </div>
 </div>
 
 <script>
-const root=document.documentElement;
-const btn=document.getElementById('mode');
-const saved=localStorage.getItem('mode')||'dark';
-if(saved==='dark')root.classList.add('dark');
+  // Dark mode toggle (defaults to dark)
+  const root = document.documentElement;
+  const btn  = document.getElementById('mode');
+  const saved = localStorage.getItem('mode') || 'dark';
+  if (saved === 'dark') { root.classList.add('dark'); }
+  else { root.classList.remove('dark'); }
 
-btn.onclick=()=>{
- const dark=root.classList.toggle('dark');
- localStorage.setItem('mode',dark?'dark':'light');
-};
+  btn.onclick = () => {
+    const dark = root.classList.toggle('dark');
+    localStorage.setItem('mode', dark ? 'dark' : 'light');
+  };
 </script>
-
 </body>
 </html>
