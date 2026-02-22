@@ -3,24 +3,58 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Publications — Adithya Pradeep Nair</title>
+  <title>Publications - Adithya Pradeep Nair</title>
   <style>
     :root{
-      --bg:#0f0f12; --fg:#eaeaea; --muted:#a0a0a0; --link:#caa6ff;
-      --card:#17171f; --border:#2a2a35; --chip:#23232e; --max:980px;
+      --bg:#ffffff; --fg:#141414; --muted:#6b6b6b; --link:#a200ff;
+      --card:#f6f6f6; --border:#eaeaea; --chip:#efeff4; --max:980px;
     }
+    :root.dark{
+      --bg:#0f0f12; --fg:#eaeaea; --muted:#a0a0a0; --link:#caa6ff;
+      --card:#17171f; --border:#2a2a35; --chip:#23232e;
+    }
+
     *{ box-sizing:border-box }
     body{
       margin:0; background:var(--bg); color:var(--fg);
       font:16px/1.65 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
     }
     a{ color:var(--link); text-decoration:none }
-    .container{ max-width:var(--max); margin:0 auto; padding:24px }
 
-    /* top nav (same as index) */
-    .top{ display:flex; gap:18px; justify-content:center; align-items:center; margin:6px 0 8px }
-    .toggle{ border:1px solid var(--border); border-radius:999px; padding:3px 10px; cursor:pointer; font-size:14px; color:var(--muted) }
-    .sep{ height:1px; background:var(--border); margin:4px 0 18px }
+    /* Fixed top nav (matches your index style) */
+    .top{
+      position:fixed;
+      top:0; left:0;
+      width:100%;
+      height:60px;
+      background:var(--bg);
+      border-bottom:1px solid var(--border);
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      gap:28px;
+      z-index:1000;
+      backdrop-filter: blur(10px);
+      flex-wrap:wrap;
+      padding:0 12px;
+    }
+    .top a{ font-size:18px; opacity:0.9 }
+    .top a:hover{ opacity:1 }
+    .toggle{
+      border:1px solid var(--border);
+      border-radius:999px;
+      padding:3px 10px;
+      cursor:pointer;
+      font-size:14px;
+      color:var(--muted);
+      background:transparent;
+    }
+
+    .container{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:90px 24px 24px; /* space for fixed nav */
+    }
 
     h1{ font-size:36px; margin:6px 0 2px }
     .lead{ color:var(--muted); margin:0 0 22px }
@@ -29,22 +63,44 @@
     .pub{
       display:grid;
       grid-template-columns:130px 1fr 70px;
-      gap:14px; align-items:center;
-      background:var(--card); border:1px solid var(--border);
-      border-radius:12px; padding:12px; margin:16px 0;
+      gap:14px;
+      align-items:center;
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:12px;
+      padding:12px;
+      margin:16px 0;
     }
     .thumb{
-      width:130px; height:82px; border-radius:8px; object-fit:cover;
-      background:#222; display:flex; align-items:center; justify-content:center; color:#888;
+      width:130px;
+      height:82px;
+      border-radius:8px;
+      object-fit:cover;
+      background:var(--border);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:var(--muted);
+      font-size:14px;
     }
     .title{ font-weight:700 }
     .meta{ font-size:14px; color:var(--muted) }
     .chips{ margin-top:6px }
     .chip{
-      display:inline-block; background:var(--chip); border:1px solid var(--border);
-      padding:4px 10px; border-radius:999px; font-size:12px; margin-right:8px;
+      display:inline-block;
+      background:var(--chip);
+      border:1px solid var(--border);
+      padding:4px 10px;
+      border-radius:999px;
+      font-size:12px;
+      margin:0 8px 8px 0;
     }
-    .year{ color:#8a8a96; font-size:28px; opacity:.5; justify-self:end }
+    .year{
+      color:var(--muted);
+      font-size:28px;
+      opacity:.55;
+      justify-self:end;
+    }
     .back{ margin-top:10px; color:var(--muted); display:inline-block }
 
     @media (max-width:820px){
@@ -54,32 +110,84 @@
     }
   </style>
 </head>
+
 <body>
+  <!-- top nav -->
+  <div class="top">
+    <a href="index.html#about">About</a>
+    <a href="index.html#experience">Experience</a>
+    <a href="publications.html"><b>Publications</b></a>
+    <a href="projects.html">Projects</a>
+    <a href="contact.html">Contact</a>
+    <button class="toggle" id="mode">☾/☀</button>
+  </div>
+
   <div class="container">
-
-    <!-- top nav -->
-    <div class="top">
-      <a href="index.html">About</a>
-      <a href="publications.html"><b>Publications</b></a>
-      <a href="projects.html">Projects</a>
-      <button class="toggle" id="mode">☾/☀</button>
-    </div>
-    <div class="sep"></div>
-
     <h1>Publications</h1>
     <p class="lead">
-      Reverse-chronological selection. Full list on
+      Reverse chronological selection. Full list on
       <a href="https://scholar.google.com/citations?user=7aQmxwcAAAAJ" target="_blank" rel="noopener">Google Scholar</a>.
     </p>
 
     <div id="pub-list"></div>
 
-    <a class="back" href="index.html">← Back to About</a>
+    <a class="back" href="index.html#about">← Back to About</a>
   </div>
 
   <script>
     /* ---------- Your publications (one object per paper) ---------- */
     const pubs = [
+      /* === NEW: add these 3 papers (as requested) === */
+      {
+        title: "Gap-controlled photonic coupling in femtosecond laser-written waveguide interconnections",
+        authors: "J. Qin, Y. Montelongo, A. Pradeep, Z. Pong, S. J. Elston, P. S. Salter, M. J. Booth",
+        venue: "Optica Continuum",
+        year: 2026,
+        thumb: "/assets/High Resolution website.jpeg",   
+        links: {
+          abs:   "",
+          pdf:   "",
+          doi:   "",
+          html:  "",
+          code:  "",
+          bib:   "",
+          scholar: "https://scholar.google.com/scholar?hl=en&as_sdt=0%2C5&q=Gap-controlled+photonic+coupling+in+femtosecond+laser-written+waveguide+interconnections&btnG="
+        }
+      },
+      {
+        title: "From millimeters to microns: a hybrid strategy for reconfigurable liquid-crystal patterning",
+        authors: "A. Pradeep, Y. Montelongo, J. S. Ma, Z. Xu, T. Wang, J. Qin, C. Nourshargh, M. Booth, S. Elston, et al.",
+        venue: "Small Methods",
+        year: 2026,
+        thumb: "",   // optional: add an image path later
+        links: {
+          abs:   "",
+          pdf:   "",
+          doi:   "",
+          html:  "",
+          code:  "",
+          bib:   "",
+          scholar: "https://scholar.google.com/scholar?hl=en&as_sdt=0%2C5&q=From+millimeters+to+microns%3A+a+hybrid+strategy+for+reconfigurable+liquid%E2%80%90crystal+patterning&btnG="
+        }
+      },
+      {
+        title: "Termination Control Between Collinear Segments in 3D Laser-written Photonic Circuits",
+        authors: "J. Qin, Y. Montelongo, A. Pradeep, Z. Pong, Z. Song, T. Wang, S. M. Morris, S. J. Elston, P. S. Salter, et al.",
+        venue: "Laser Applications Conference (Optica), 2025",
+        year: 2025,
+        thumb: "",   // optional: add an image path later
+        links: {
+          abs:   "",
+          pdf:   "",
+          doi:   "",
+          html:  "",
+          code:  "",
+          bib:   "",
+          scholar: "https://scholar.google.com/scholar?hl=en&as_sdt=0%2C5&q=Termination+Control+Between+Collinear+Segments+in+3D+Laser-written+Photonic+Circuits&btnG="
+        }
+      },
+
+      /* === Existing list (kept) === */
       {
         title: "Advanced Image-Integrated Smart Windows using Printed Electrochromic Polymer-Dispersed Liquid Crystal Droplets",
         authors: "Jun-Seok Ma, Waqas Kamal, Adithya Pradeep, Alva J. Orr, Seung-Won Oh, Jin-Young Choi, Jinge Guo, Bradley Mee, Hyun-Woo Oh, Jae-Hwan Lee, Alfonso A. Castrejon-Pita, Steve J. Elston, Wook-Sung Kim, Stephen M. Morris",
@@ -129,7 +237,7 @@
         }
       },
       {
-        title: "Uniform Polycrystalline Si Films Obtained via the Fiber‐laser‐based Spot‐Beam‐Annealing Method",
+        title: "Uniform Polycrystalline Si Films Obtained via the Fiber-laser-based Spot-Beam-Annealing Method",
         authors: "Jayoung Park, Ruobing Song, Nikita Lisenko, Bonan Shen, Alexander Killips, Adithya P Nair, James S Im",
         venue: "SID Symposium Digest of Technical Papers",
         year: 2023,
@@ -144,8 +252,8 @@
           scholar: "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=7aQmxwcAAAAJ&sortby=pubdate&citation_for_view=7aQmxwcAAAAJ:UeHWp8X0CEIC"
         }
       },
-       {
-        title: "Fiber‐Laser Processing of Si and IGZO Films for Advanced AMOLED Displays on Gen 8 Substrates",
+      {
+        title: "Fiber-Laser Processing of Si and IGZO Films for Advanced AMOLED Displays on Gen 8 Substrates",
         authors: "James S Im, Ruobing Song, Jayoung Park, Nikita Lisenko, Bonan Shen, Alexander Killips, Adithya P Nair",
         venue: "SID Symposium Digest of Technical Papers",
         year: 2022,
@@ -159,8 +267,8 @@
           bib:   "",
           scholar: "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=7aQmxwcAAAAJ&sortby=pubdate&citation_for_view=7aQmxwcAAAAJ:2osOgNQ5qMEC"
         }
-       },
-       {
+      },
+      {
         title: "Composition design and nanoindentation studies on Mg-Ca-Zn metallic glass",
         authors: "Yogesh Prabhu, S Vincent, Adithya Nair, Wan Kim, ES Park, Jatin Bhatt",
         venue: "Metallurgical and Materials Transactions A",
@@ -175,8 +283,8 @@
           bib:   "",
           scholar: "https://scholar.google.com/citations?user=7aQmxwcAAAAJ"
         }
-       },
-       {
+      },
+      {
         title: "Fiber-laser crystallization of Si films for advanced displays via the spot-beam annealing method",
         authors: "Ruobing Song, Jayoung Park, Nikita Lisenko, Bonan Shen, Alexander Killips, Adithya P Nair, Joshua Schoenly, Manuel Leonardo, Roger Dowd, James S Im",
         venue: "Laser Applications in Microelectronic and Optoelectronic Manufacturing (LAMOM) XXVII",
@@ -191,8 +299,8 @@
           bib:   "",
           scholar: "https://scholar.google.com/citations?user=7aQmxwcAAAAJ"
         }
-       },
-       {
+      },
+      {
         title: "Cu-Zr-Ti-Al metallic glass: Thermodynamic prediction, synthesis, and biocorrosion studies",
         authors: "Yogesh Prabhu, S Vincent, S Manulal, Adithya Nair, Jatin Bhatt",
         venue: "Physica B: Condensed Matter",
@@ -207,8 +315,8 @@
           bib:   "",
           scholar: "https://scholar.google.com/citations?user=7aQmxwcAAAAJ"
         }
-       },
-       {
+      },
+      {
         title: "Corrosion characteristics of zinc coated SS304 stainless steel",
         authors: "Adithya Pradeep Nair, Syed Arafat, S Vincent",
         venue: "Materials Today: Proceedings",
@@ -223,9 +331,9 @@
           bib:   "",
           scholar: "https://scholar.google.com/citations?user=7aQmxwcAAAAJ"
         }
-       },
+      },
       {
-        title: "An experimental case study on corrosion characterization of Cu46Zr40Ti8. 5Al5. 5 metallic glass",
+        title: "An experimental case study on corrosion characterization of Cu46Zr40Ti8.5Al5.5 metallic glass",
         authors: "Adithya Nair, Yogesh Prabhu, Jasmitha Mendonca, WH Ryu, ES Park, Jatin Bhatt, S Vincent",
         venue: "Journal of Non-Crystalline Solids",
         year: 2019,
@@ -239,13 +347,15 @@
           bib:   "",
           scholar: "https://scholar.google.com/citations?user=7aQmxwcAAAAJ"
         }
-       }
+      }
     ];
 
     /* ---------- Renderer (do not edit) ---------- */
-    const L = { ABS:'abs', BIB:'bib', PDF:'pdf', HTML:'html', DOI:'doi', CODE:'code', SCHOLAR:'scholar' };
-    const chip   = (label, url) => url ? `<a class="chip" href="${url}" target="_blank" rel="noopener">${label}</a>` : "";
-    const thumbEl = (src) => src ? `<img class="thumb" src="${src}" alt="">` : `<div class="thumb">fig</div>`;
+    const chip = (label, url) => url ? `<a class="chip" href="${url}" target="_blank" rel="noopener">${label}</a>` : "";
+    const thumbEl = (src) => src
+      ? `<img class="thumb" src="${src}" alt="">`
+      : `<div class="thumb">fig</div>`;
+
     function pubCard(p){
       const buttons = [
         chip("ABS", p.links.abs),
@@ -256,6 +366,7 @@
         chip("CODE", p.links.code),
         chip("SCHOLAR", p.links.scholar)
       ].join("");
+
       return `
         <article class="pub">
           ${thumbEl(p.thumb)}
@@ -268,6 +379,7 @@
         </article>
       `;
     }
+
     document.getElementById("pub-list").innerHTML =
       pubs.sort((a,b)=>b.year-a.year).map(pubCard).join("");
 
@@ -276,6 +388,7 @@
     const btn  = document.getElementById('mode');
     const saved = localStorage.getItem('mode') || 'dark';
     if (saved === 'dark') root.classList.add('dark'); else root.classList.remove('dark');
+
     btn.onclick = () => {
       const d = root.classList.toggle('dark');
       localStorage.setItem('mode', d ? 'dark' : 'light');
