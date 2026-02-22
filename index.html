@@ -4,22 +4,37 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Adithya Pradeep</title>
+
+<!-- Favicon (tab icon). Put these files in /assets/ -->
+<link rel="icon" href="assets/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+<!-- Social preview (optional but helpful for link previews) -->
+<meta property="og:title" content="Adithya Pradeep">
+<meta property="og:description" content="Topology, soft matter, photonics. Topological defects, sub-Rayleigh imaging, PICs, optical neural networks.">
+<meta property="og:image" content="assets/og-image.jpg">
+<meta property="og:type" content="website">
+
 <style>
   /* ---- theme variables (light + dark) ---- */
   :root{
     --bg:#ffffff; --fg:#141414; --muted:#6b6b6b; --link:#a200ff;
-    --card:#f6f6f6; --border:#eaeaea; --max:980px; --colR:300px;
-    --accent:#3b82f6; /* blue */
+    --card:#f6f6f6; --border:#eaeaea; --max:980px; --colR:330px;
+    --accent:#3b82f6;
   }
   :root.dark{
     --bg:#0f0f12; --fg:#eaeaea; --muted:#a0a0a0; --link:#caa6ff;
     --card:#17171f; --border:#2a2a35;
-    --accent:#60a5fa; /* blue in dark mode */
+    --accent:#60a5fa;
   }
 
   *{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:var(--fg);
-       font:16px/1.65 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--fg);
+    font:16px/1.65 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif
+  }
   a{color:var(--link);text-decoration:none}
   .container{max-width:var(--max);margin:0 auto;padding:24px}
 
@@ -30,21 +45,43 @@
   .sep{height:1px;background:var(--border);margin:4px 0 18px}
 
   /* layout */
-  .grid{display:grid;grid-template-columns:1fr var(--colR);gap:28px}
-  .sidebar .card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px}
-  .avatar{width:100%;border-radius:10px;display:block;margin-bottom:10px;object-fit:cover;aspect-ratio:1/1}
+  .grid{display:grid;grid-template-columns:1fr var(--colR);gap:28px;align-items:start}
+  main{min-width:0}
+
+  /* cards */
+  .card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:14px;
+  }
+
+  /* typography */
   h1{font-size:36px;line-height:1.2;margin:0 0 6px}
   h1 b{font-weight:800}
   h2{font-size:22px;margin:26px 0 10px}
   .note{font-style:italic;color:var(--muted);margin:6px 0 14px}
   .motto{color:var(--muted);margin:2px 0 10px}
   .small{font-size:14px;color:var(--muted)}
+  .lead{margin:10px 0 0}
   footer{margin:36px 0 10px;text-align:center;color:var(--muted);font-size:14px}
 
-  /* Updates timeline */
-  .timeline{display:grid;grid-template-columns:70px 1fr;gap:14px;align-items:start}
+  /* sidebar portrait */
+  .avatar{
+    width:100%;
+    border-radius:12px;
+    display:block;
+    object-fit:cover;
+    aspect-ratio:4/5;
+    object-position:50% 78%;
+    margin-bottom:12px;
+  }
 
-  /* Experience list (like screenshot) */
+  /* sidebar links */
+  .links a{display:block;margin:6px 0}
+  .links .muted{color:var(--muted)}
+
+  /* Experience list (like her) */
   .vlist{
     border-left:2px solid var(--accent);
     padding-left:14px;
@@ -52,7 +89,7 @@
   }
   .vitem{
     position:relative;
-    padding:8px 0 8px 0;
+    padding:10px 0;
   }
   .vitem::before{
     content:"";
@@ -64,9 +101,7 @@
     border-radius:999px;
     background:var(--accent);
   }
-  .vtitle{
-    font-weight:700;
-  }
+  .vtitle{font-weight:750}
   .vmeta{
     color:var(--muted);
     font-size:14px;
@@ -76,19 +111,56 @@
   .vdesc{
     color:var(--muted);
     font-size:14px;
-    margin-top:2px;
+    margin-top:3px;
   }
+
+  /* Sidebar scrolling news */
+  .news-wrap{margin-top:14px}
+  .news-title{font-weight:750;margin:0 0 8px}
+  .news{
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:10px;
+    background:rgba(0,0,0,0.00);
+    max-height:240px;         /* makes it scroll like you want */
+    overflow-y:auto;
+  }
+  .news::-webkit-scrollbar{width:10px}
+  .news::-webkit-scrollbar-thumb{background:var(--border);border-radius:999px}
+  .news-item{
+    padding:10px 10px 10px 12px;
+    border-radius:10px;
+    border:1px solid transparent;
+    position:relative;
+  }
+  .news-item + .news-item{margin-top:8px}
+  .news-item::before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:10px;
+    bottom:10px;
+    width:3px;
+    background:var(--link);
+    border-radius:999px;
+    opacity:0.85;
+  }
+  .news-date{font-size:13px;color:var(--muted);margin-bottom:4px}
+  .news-text{font-size:14px;color:var(--fg)}
+  .news-text a{color:var(--link)}
 
   @media (max-width:860px){
     .grid{grid-template-columns:1fr}
     .top{justify-content:flex-start}
+    .news{max-height:260px}
   }
 </style>
 </head>
+
 <body>
 <div class="container">
   <div class="top">
-    <a href="index.html">Home</a>
+    <a href="index.html">About</a>
     <a href="#experience">Experience</a>
     <a href="publications.html">Publications</a>
     <a href="projects.html">Projects</a>
@@ -105,13 +177,12 @@
         <p class="motto">Motto – Research on cool stuff.</p>
         <p class="note">This webpage is under active construction.</p>
 
-        <p>
-          My research uses <b>topology</b> and <b>symmetry</b> to understand and engineer complex optical and soft-matter systems.
-          I study <b>topological defects</b> in liquid crystals through <b>group-theoretic</b> and <b>quantum field theoretic</b> viewpoints,
-          building effective descriptions of textures, defect-mediated transitions, and field-driven dynamics.
-          Alongside this, I work on <b>photonic integrated circuits</b> for scalable optical functionality,
-          from <b>sub-Rayleigh imaging</b> via coherence and speckle control to programmable architectures for <b>optical neural networks</b>.
-          The aim is to connect mathematical structure to device-level performance through modelling, fabrication, and measurement 🔬😀.
+        <p class="lead">
+          I work at the intersection of <b>topology</b>, <b>soft matter</b>, and <b>photonics</b>, using ideas from
+          <b>group theory</b> and <b>quantum field theory</b> to model and control complex optical textures.
+          My recent focus includes <b>topological defects</b> in liquid crystals, <b>sub-Rayleigh imaging</b> via coherence and speckle engineering,
+          and photonic integrated circuits enabling programmable functionality, including <b>optical neural networks</b>.
+          I love theory, but I need to prove it with experiments and simulations 🔬😀.
         </p>
 
         <p>
@@ -128,47 +199,47 @@
         <div class="vlist">
           <div class="vitem">
             <div>
-              <span class="vtitle">Teaching Assistant - University of Oxford</span>
+              <span class="vtitle">Teaching Assistant, University of Oxford</span>
               <span class="vmeta">Nov 2022 to present</span>
             </div>
             <div class="vdesc">
-              Led first-year lab on microcontroller systems, embedded C, instrumentation, and debugging workflows.
+              First-year lab on microcontroller systems, embedded C, instrumentation, and debugging workflows.
             </div>
           </div>
 
           <div class="vitem">
             <div>
-              <span class="vtitle">Teaching Assistant - Columbia University</span>
+              <span class="vtitle">Teaching Assistant, Columbia University</span>
               <span class="vmeta">Jan 2022 to May 2022</span>
             </div>
             <div class="vdesc">
-              Recitations and problem sessions on mechanics of materials, tensors, elastic waves, plasticity, and fracture and fatigue.
+              Mechanics of materials, tensors, elastic waves, plasticity, fracture, and fatigue.
             </div>
           </div>
 
           <div class="vitem">
             <div>
-              <span class="vtitle">Science Undergraduate Laboratory Intern - Princeton</span>
+              <span class="vtitle">Science Undergraduate Laboratory Intern, Princeton</span>
               <span class="vmeta">Jun 2020 to Jul 2020</span>
             </div>
             <div class="vdesc">
-              Worked on plasma and tokamak related modelling tasks and analysis, including vertical displacement events and neutral beam concepts.
+              Tokamak and plasma modelling and analysis.
             </div>
           </div>
 
           <div class="vitem">
             <div>
-              <span class="vtitle">Research Intern - Seoul National University</span>
+              <span class="vtitle">Research Intern, Seoul National University</span>
               <span class="vmeta">Aug 2019 to Jan 2020</span>
             </div>
             <div class="vdesc">
-              Research on metallic glasses and high entropy alloys, composite design, and applied ML for composition discovery.
+              Metallic glasses and high entropy alloys, composite design, and applied ML for materials discovery.
             </div>
           </div>
 
           <div class="vitem">
             <div>
-              <span class="vtitle">Student Intern - BITS Pilani</span>
+              <span class="vtitle">Student Intern, BITS Pilani</span>
               <span class="vmeta">Aug 2016 to Jun 2020</span>
             </div>
             <div class="vdesc">
@@ -178,42 +249,17 @@
 
           <div class="vitem">
             <div>
-              <span class="vtitle">Intern - NPCC Engineering Pvt. Limited</span>
+              <span class="vtitle">Intern, NPCC Engineering Pvt. Limited</span>
               <span class="vmeta">Jun 2017 to Aug 2017</span>
             </div>
             <div class="vdesc">
-              Mechanical static design exposure for pressure vessels, design codes, and ASME Section VIII workflows.
+              Pressure vessel static design exposure and ASME Section VIII workflows.
             </div>
           </div>
         </div>
       </section>
 
-      <section id="updates">
-        <h2>Updates</h2>
-        <div class="timeline">
-          <div class="small">2025</div>
-          <div>
-            New paper out in <i>Small Methods</i>:
-            <a href="https://onlinelibrary.wiley.com/doi/10.1002/smtd.202501892" target="_blank" rel="noopener">
-              From Millimeters to Microns: A Hybrid Strategy for Reconfigurable Liquid-Crystal Patterning
-            </a>.
-          </div>
-
-          <div class="small">2026</div>
-          <div>
-            Paper released in <i>Optica Continuum</i>:
-            <a href="https://opg.optica.org/optcon/fulltext.cfm?uri=optcon-5-2-518" target="_blank" rel="noopener">
-              Gap-controlled photonic coupling in femtosecond laser-written waveguide interconnections
-            </a>.
-          </div>
-
-          <div class="small">Oct<br>2025</div>
-          <div>
-            Best Paper Award for <i>Termination Control Between Collinear Segments in 3D Laser-written Photonic Circuits</i>,
-            Optica Laser Congress 2025, Prague, Czech Republic, 19 to 23 October 2025.
-          </div>
-        </div>
-      </section>
+      <footer>© 2025 Adithya Pradeep</footer>
     </main>
 
     <!-- right sidebar -->
@@ -223,25 +269,53 @@
           class="avatar"
           src="assets/WhatsApp%20Image%202025-10-05%20at%2016.56.34.jpeg"
           alt="Adithya portrait"
-          style="
-            width:100%;
-            aspect-ratio: 4 / 5;
-            object-fit: cover;
-            object-position: 50% 78%;
-            border-radius:10px;
-          "
         >
-        <div class="small">
-          Oxford • London<br>
-          <a href="mailto:adithyapn15@gmail.com">adithyapn15@gmail.com</a><br>
-          <a href="https://scholar.google.com/citations?user=7aQmxwcAAAAJ&hl=en">Google Scholar</a><br>
-          <a href="https://www.linkedin.com/in/adithya-nair15">LinkedIn</a><br>
-          <span>CV available on request</span>
+
+        <div class="small links">
+          <div class="muted">Oxford • London</div>
+          <a href="mailto:adithyapn15@gmail.com">adithyapn15@gmail.com</a>
+          <a href="https://scholar.google.com/citations?user=7aQmxwcAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+          <a href="https://www.linkedin.com/in/adithya-nair15" target="_blank" rel="noopener">LinkedIn</a>
+          <div class="muted">CV available on request</div>
+        </div>
+
+        <!-- Scrolling news below photo and links -->
+        <div class="news-wrap">
+          <div class="news-title">News</div>
+
+          <div class="news" aria-label="News feed">
+            <div class="news-item">
+              <div class="news-date">2025</div>
+              <div class="news-text">
+                New paper in <i>Small Methods</i>:
+                <a href="https://onlinelibrary.wiley.com/doi/10.1002/smtd.202501892" target="_blank" rel="noopener">
+                  From Millimeters to Microns: A Hybrid Strategy for Reconfigurable Liquid-Crystal Patterning
+                </a>.
+              </div>
+            </div>
+
+            <div class="news-item">
+              <div class="news-date">2026</div>
+              <div class="news-text">
+                Paper released in <i>Optica Continuum</i>:
+                <a href="https://opg.optica.org/optcon/fulltext.cfm?uri=optcon-5-2-518" target="_blank" rel="noopener">
+                  Gap-controlled photonic coupling in femtosecond laser-written waveguide interconnections
+                </a>.
+              </div>
+            </div>
+
+            <div class="news-item">
+              <div class="news-date">Oct 2025</div>
+              <div class="news-text">
+                Best Paper Award for <i>Termination Control Between Collinear Segments in 3D Laser-written Photonic Circuits</i>,
+                Optica Laser Congress 2025, Prague, Czech Republic, 19 to 23 October 2025.
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </aside>
 
-    <footer>© 2025 Adithya Pradeep</footer>
   </div>
 </div>
 
