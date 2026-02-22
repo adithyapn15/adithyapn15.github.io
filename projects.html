@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Projects — Adithya Pradeep Nair</title>
+  <title>Projects - Adithya Pradeep Nair</title>
   <style>
     :root{
       --bg:#0f0f12; --fg:#eaeaea; --muted:#a0a0a0; --link:#caa6ff;
@@ -16,21 +16,42 @@
       font:16px/1.65 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
     }
     a{ color:var(--link); text-decoration:none }
-
     .container{ max-width:var(--max); margin:0 auto; padding:24px }
+
     /* top nav */
-    .top{ display:flex; gap:18px; justify-content:center; align-items:center; margin:6px 0 8px }
+    .top{ display:flex; gap:18px; justify-content:center; align-items:center; margin:6px 0 8px; flex-wrap:wrap }
+    .top a{ font-size:15px }
     .toggle{ border:1px solid var(--border); border-radius:999px; padding:3px 10px; cursor:pointer; font-size:14px; color:var(--muted) }
     .sep{ height:1px; background:var(--border); margin:4px 0 18px }
 
     h1{ font-size:36px; margin:6px 0 2px }
-    .lead{ color:var(--muted); margin:0 0 22px }
+    .lead{ color:var(--muted); margin:0 0 14px }
 
-    /* Masonry layout using CSS columns for variable heights */
-    .masonry{
-      column-count:3;
-      column-gap:16px;
+    .callout{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:14px 14px;
+      box-shadow: var(--shadow);
+      margin: 0 0 18px;
     }
+    .callout h2{
+      font-size:18px;
+      margin:0 0 8px;
+    }
+    .callout p{ margin:0 0 10px; color:var(--muted) }
+    .pillrow{ display:flex; flex-wrap:wrap; gap:10px }
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:var(--chip);
+      border:1px solid var(--border);
+      font-size:13px;
+    }
+
+    /* Masonry layout */
+    .masonry{ column-count:3; column-gap:16px; }
     @media (max-width:1100px){ .masonry{ column-count:2 } }
     @media (max-width:700px){  .masonry{ column-count:1 } }
 
@@ -46,15 +67,13 @@
     }
     .cover{
       width:100%;
-      aspect-ratio: 16 / 9;   /* consistent banner crop */
+      aspect-ratio: 16 / 9;
       object-fit:cover;
       display:block;
       background:#222;
     }
     .content{ padding:14px 14px 12px }
-    .title{
-      font-size:22px; font-weight:800; line-height:1.15; margin:4px 0 6px;
-    }
+    .title{ font-size:22px; font-weight:800; line-height:1.15; margin:4px 0 6px; }
     .subtitle{ color:var(--muted); font-size:14px; margin:2px 0 10px }
     .chips{ display:flex; flex-wrap:wrap; gap:8px; margin-top:8px }
     .chip{
@@ -71,14 +90,32 @@
     <!-- top nav -->
     <div class="top">
       <a href="index.html">About</a>
+      <a href="index.html#experience">Experience</a>
       <a href="publications.html">Publications</a>
       <a href="projects.html"><b>Projects</b></a>
+      <a href="contact.html">Contact</a>
       <button class="toggle" id="mode">☾/☀</button>
     </div>
     <div class="sep"></div>
 
     <h1>Projects</h1>
-    <p class="lead">A growing collection of things I tinker with.</p>
+    <p class="lead">
+      A growing collection of things I tinker with. I keep short PDF notes for many of these topics.
+      Please feel free to contact me regarding collaborations 🔬😀.
+    </p>
+
+    <div class="callout">
+      <h2>Notes (PDF)</h2>
+      <p>
+        These are lightweight, equation-first notes that I use as working references.
+      </p>
+      <div class="pillrow">
+        <a class="pill" href="assets/notes/group-theory-homotopy.pdf" target="_blank" rel="noopener">Group theory and homotopy</a>
+        <a class="pill" href="assets/notes/liquid-crystal-defects.pdf" target="_blank" rel="noopener">Liquid crystal defects</a>
+        <a class="pill" href="assets/notes/fdtd-light-simulation.pdf" target="_blank" rel="noopener">Minimal FDTD light simulation</a>
+        <a class="pill" href="assets/notes/main.pdf" target="_blank" rel="noopener">QFT foundations</a>
+      </div>
+    </div>
 
     <div id="grid" class="masonry"></div>
   </div>
@@ -89,32 +126,20 @@
       {
         title: "musical-box lab",
         subtitle: "MCU C firmware · PWM audio · photodiode control · op-amp chain",
-        img: "/assets/projects/musicalbox.jpg",      // 16:9 preferred; any size works
-        links: {
-          git:  "",                                   // e.g., https://github.com/...
-          demo: "",                                   // e.g., live page / video
-          paper:""                                    // e.g., arXiv/paper link
-        }
+        img: "/assets/projects/musicalbox.jpg",
+        links: { git:"", demo:"", paper:"" }
       },
       {
-        title: "speckle & sub-Rayleigh imaging toolkit",
+        title: "speckle and sub-Rayleigh imaging toolkit",
         subtitle: "Coherence engineering + speckle processing utilities for lab demos",
         img: "/assets/projects/speckle.png",
-        links: {
-          git:  "",
-          demo: "",
-          paper:""
-        }
+        links: { git:"", demo:"", paper:"" }
       },
       {
         title: "lattice Boltzmann demos",
-        subtitle: "Soft-matter flows: Q-tensor/LdG visualization; interactive notebooks",
+        subtitle: "Soft-matter flows: Q-tensor and LdG visualization; interactive notebooks",
         img: "/assets/projects/lbm.png",
-        links: {
-          git:  "",
-          demo: "",
-          paper:""
-        }
+        links: { git:"", demo:"", paper:"" }
       },
       {
         title: "toron racetrack prototypes",
@@ -124,13 +149,13 @@
       },
       {
         title: "DHM speckle phase tools",
-        subtitle: "Quick scripts for phase retrieval & analysis in digital holography",
+        subtitle: "Quick scripts for phase retrieval and analysis in digital holography",
         img: "/assets/projects/dhm.png",
         links: { git:"", demo:"", paper:"" }
       },
       {
         title: "optics lab helper",
-        subtitle: "Small utilities for oscilloscope/FG logging and calibration notes",
+        subtitle: "Small utilities for oscilloscope and waveform-generator logging plus calibration notes",
         img: "/assets/projects/labtools.jpg",
         links: { git:"", demo:"", paper:"" }
       }
